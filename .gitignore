@@ -1,0 +1,6 @@
+.venv
+.vscode
+.scratch
+__pycache__
+*egg*
+.samples
