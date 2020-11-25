@@ -21,7 +21,7 @@ jobs:
           bump2version
       - name: Decide Semver Type
         run: >-
-          echo "${{ github.events.pull_request.labels }}"
+          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
       - name: Increment VERSION
         run: >-
           bump2version 
