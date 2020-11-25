@@ -19,9 +19,6 @@ jobs:
           pip install
           --upgrade
           bump2version
-      - name: Decide Semver Type
-        run: >-
-          
       - name: Increment VERSION
         run: >-
           bump2version 
