@@ -1,6 +1,8 @@
 name: Increment version TEST
 
-on: [push]
+on: 
+  pull_request:
+    types: [opened, synchronize, edited]
 
 jobs:
   increment-version:
@@ -19,7 +21,7 @@ jobs:
           bump2version
       - name: Decide Semver Type
         run: >-
-          echo ${{ github.events.pull_request.labels }}
+          echo "${{ github.events.pull_request.labels }}"
       - name: Increment VERSION
         run: >-
           bump2version 
