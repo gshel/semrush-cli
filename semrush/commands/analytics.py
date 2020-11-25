@@ -1,11 +1,9 @@
-from enum import Enum, auto
-
 import click
 import requests
 import semrush.resources
 
 
-BASE_ENDPOINT_ANALYTICS = "https://api.semrush.com/?"
+API_ENDPOINT = "https://api.semrush.com/?"
 
 
 @click.group()
@@ -40,7 +38,7 @@ def ad_history(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -63,7 +61,7 @@ def adwords(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -86,7 +84,7 @@ def adwords_competition(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -109,7 +107,7 @@ def adwords_unique(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -134,7 +132,7 @@ def compare(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -159,7 +157,7 @@ def shopping(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -182,7 +180,7 @@ def organic(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 @domain.command()
@@ -204,7 +202,7 @@ def organic_competition(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -240,7 +238,7 @@ def overview(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -263,7 +261,7 @@ def related(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
@@ -286,7 +284,7 @@ def fullsearch(ctx, **kwargs):
     for i in kwargs:
         required_params[i] = kwargs[i]
     query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(BASE_ENDPOINT_ANALYTICS+query_string)
+    resp = requests.get(API_ENDPOINT+query_string)
     click.echo(resp.text)
 
 
