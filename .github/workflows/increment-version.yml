@@ -25,9 +25,7 @@ jobs:
           git config --global user.name "Github Actions"
       - name: Increment VERSION
         run: >-
-          bump2version 
-          --current-version 
-          `cat VERSION` 
-          `echo "${{ toJson(github.event.pull_request.labels.*.name) }}" |
-          grep -Eo "major|minor|patch"`
-          VERSION && cat VERSION
+          BUMP_TYPE=`echo "${{ toJson(github.event.pull_request.labels.*.name) }}" | grep -Eo "major|minor|patch"`
+          bump2version --current-version `cat VERSION` \$BUMP_TYPE VERSION && 
+          echo "\$BUMP_TYPE bump to: `cat VERSION`" 
+          && git push
