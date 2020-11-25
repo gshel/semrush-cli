@@ -1,0 +1,29 @@
+name: Increment version TEST
+
+on: [push]
+
+jobs:
+  increment version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install bump2version
+        run: >-
+          python -m
+          pip install
+          --upgrade
+          bump2version
+      - name: Decide Semver Type
+        run: >-
+          echo ${{ github.events.pull_request.labels.*.name }}
+      - name: Increment VERSION
+        run: >-
+          bump2version 
+          --current-version 
+          `cat VERSION` 
+          <major|minor|patch> 
+          VERSION && cat VERSION
