@@ -1,9 +1,3 @@
-"""A setuptools based setup module.
-See:
-https://packaging.python.org/guides/distributing-packages-using-setuptools/
-https://github.com/pypa/sampleproject
-"""
-
 # Always prefer setuptools over distutils
 from setuptools import setup, find_packages
 import pathlib
@@ -13,9 +7,9 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="semrush",
+    name="semrush-cli",
     version=open(os.path.join(".", "VERSION")).read().strip(),
-    description="A command-line tool for interacting with the SEMRush API.",
+    description="A command-line tool for interacting with the SEMRush API v3.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="",
@@ -23,6 +17,7 @@ setup(
     author_email="",
     classifiers=[
         "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.8",
     ],
     keywords="semrush, command-line, command-line interface",
@@ -56,11 +51,6 @@ setup(
             "pytest",
             "pytest-cov",
             ], 
-        "docs": [
-            "sphinx", 
-            "sphinxemoji", 
-            "sphinx_rtd_theme"
-            ]
         },  # Optional
     # If there are data files included in your packages that need to be
     # installed, specify them here.
@@ -84,8 +74,8 @@ setup(
         [console_scripts]
         semrush=semrush.cli:entry_point
     ''',
-    # project_urls={
-    #     "Bug Reports": "https://github.com/gshel/jira-cli/issues",
-    #     "Source": "https://github.com/gshel/jira-cli",
-    # },
+    project_urls={
+        "Bug Reports": "https://github.com/gshel/semrush-cli/issues",
+        "Source": "https://github.com/gshel/semrush-cli",
+    },
 )
