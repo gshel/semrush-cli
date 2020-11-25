@@ -1,8 +1,7 @@
 name: Increment version TEST
 
 on: 
-  pull_request:
-    types: [opened, synchronize, edited]
+  push
 
 jobs:
   increment-version:
