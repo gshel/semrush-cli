@@ -21,11 +21,12 @@ jobs:
           bump2version
       - name: Decide Semver Type
         run: >-
-          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+          
       - name: Increment VERSION
         run: >-
           bump2version 
           --current-version 
           `cat VERSION` 
-          <major|minor|patch> 
+          `echo "${{ toJson(github.event.pull_request.labels.*.name) }}" |
+          grep -Eo "major|minor|patch"`
           VERSION && cat VERSION
