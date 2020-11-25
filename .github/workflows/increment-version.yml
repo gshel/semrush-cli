@@ -19,7 +19,7 @@ jobs:
           bump2version
       - name: Decide Semver Type
         run: >-
-          echo ${{ github.events.pull_request.labels.*.name }}
+          echo ${{ github.events.pull_request.labels }}
       - name: Increment VERSION
         run: >-
           bump2version 
