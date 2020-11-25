@@ -3,7 +3,7 @@ name: Increment version TEST
 on: [push]
 
 jobs:
-  increment version:
+  increment-version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
