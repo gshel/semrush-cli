@@ -22,10 +22,11 @@ jobs:
       - name: Configure Git
         run: >-
           git config --global user.email "gshel@users.noreply.github.com" &&
-          git config --global user.name "Github Actions"
+          git config --global user.name "Github Actions" &&
+          git checkout ${GITHUB_REF##*/}
       - name: Increment VERSION
         run: >-
-          BUMP_TYPE=`echo "${{ toJson(github.event.pull_request.labels.*.name) }}" | grep -Eo "major|minor|patch"`
+          BUMP_TYPE=`echo "${{ toJson(github.event.pull_request.labels.*.name) }}" | grep -Eo "major|minor|patch"` &&
           bump2version --current-version `cat VERSION` \$BUMP_TYPE VERSION && 
           echo "\$BUMP_TYPE bump to: `cat VERSION`" 
           && git push
