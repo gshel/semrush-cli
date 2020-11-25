@@ -28,10 +28,12 @@ jobs:
           git config --global user.name "Github Actions"
       - name: Increment VERSION
         run: >-
-          bump2version --current-version `cat VERSION` 
-          `echo "${{ toJson(github.event.pull_request.labels.*.name) }}" | grep -Eo "major|minor|patch"` 
-          VERSION && 
+          bump2version 
+          --current-version 
           `cat VERSION`
+          `echo "${{ toJson(github.event.pull_request.labels.*.name) }}" | grep -Eo "major|minor|patch"`
+          VERSION &&
+          echo `cat VERSION`
       - name: Push Changes to Branch
         uses: ad-m/github-push-action@master
         with:
