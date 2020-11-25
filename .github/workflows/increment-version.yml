@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -22,11 +25,16 @@ jobs:
       - name: Configure Git
         run: >-
           git config --global user.email "gshel@users.noreply.github.com" &&
-          git config --global user.name "Github Actions" &&
-          git checkout ${GITHUB_REF##*/}
+          git config --global user.name "Github Actions"
       - name: Increment VERSION
         run: >-
-          BUMP_TYPE=`echo "${{ toJson(github.event.pull_request.labels.*.name) }}" | grep -Eo "major|minor|patch"` &&
-          bump2version --current-version `cat VERSION` \$BUMP_TYPE VERSION && 
-          echo "\$BUMP_TYPE bump to: `cat VERSION`" 
-          && git push
+          bump2version --current-version `cat VERSION` 
+          `echo "${{ toJson(github.event.pull_request.labels.*.name) }}" | grep -Eo "major|minor|patch"` 
+          VERSION && 
+          `cat VERSION`
+      - name: Push Changes to Branch
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
