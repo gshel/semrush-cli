@@ -2,7 +2,7 @@ import click
 import requests
 import semrush.resources
 
-ENDPOINT = "http://www.semrush.com/users/countapiunits.html?"
+API_ENDPOINT = "http://www.semrush.com/users/countapiunits.html?"
 
 @click.group(invoke_without_command=True)
 @click.pass_context
@@ -12,7 +12,7 @@ def accounts(ctx):
 
 def get():
     query_string = semrush.resources.assemble_query_string()
-    response = requests.get(ENDPOINT+query_string)
+    response = requests.get(API_ENDPOINT+query_string)
     click.echo(f"Current API Balance: {response.text}")
     return response
 
