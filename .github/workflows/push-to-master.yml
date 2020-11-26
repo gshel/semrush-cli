@@ -13,7 +13,7 @@ jobs:
       - name: Output commit_msg.PR_NUMBER
         id: commit_msg
         run: |
-          echo "::set-output name=PR_NUMBER::`echo ${{ toJson(github.event.head_commit.message) }} | sed -r 's;.*\#([0-9]{1,}).*;\1;'`"
+          echo "::set-output name=PR_NUMBER::$(echo ${{ toJson(github.event.head_commit.message) }} | sed -r 's;.*\#([0-9]{1,}).*;\1;')"
       - name: Output pr.LABELS
         id: pr
         run: >-
