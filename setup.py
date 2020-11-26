@@ -23,6 +23,7 @@ setup(
     keywords="semrush, command-line, command-line interface",
     package_dir={"": "."},
     packages=find_packages(where="."),
+    include_package_data=True,
     python_requires=">=3.8, <4",
     # This field lists other packages that your project depends on to run.
     # Any package you put here will be installed by pip when your project is
