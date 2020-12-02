@@ -21,6 +21,7 @@ setup(
         "Programming Language :: Python :: 3.8",
     ],
     keywords="semrush, command-line, command-line interface",
+    package_data={'semrush':['../VERSION']},
     package_dir={"": "."},
     packages=find_packages(where="."),
     include_package_data=True,
