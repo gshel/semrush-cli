@@ -7,6 +7,8 @@ API_ENDPOINT = "http://www.semrush.com/users/countapiunits.html?"
 @click.group(invoke_without_command=True)
 @click.pass_context
 def accounts(ctx):
+    """Check API Units Balance
+    """
     if ctx.invoked_subcommand is None:
         get()
 

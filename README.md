@@ -1,10 +1,6 @@
 # semrush-cli
 A simple cli tool for interacting with the SEMRush v3 API.
 ## Installation
-TODO
-### Linux
-TODO
-### Windows
-TODO
+`pip install semrush-cli`
 ## Usage
-TODO
+`semrush --help`
