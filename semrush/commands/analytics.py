@@ -24,29 +24,6 @@ def domain(ctx, domain: str):
 @click.option("--display-limit", default=1)
 @click.option("--export-escape", default=1)
 @click.pass_context
-def ad_history(ctx, **kwargs):
-    """Lists a domain’s competition in paid search results.
-    \f
-    :Keyword Arguments:
-        * *database* (``str``) -- 
-        * *display_limit* (``int``) -- 
-        * *export_escape* (``int``) -- 
-    """
-    required_params = dict()
-    required_params['type'] = 'domain_adwords_historical'
-    required_params['domain'] = ctx.obj['domain']
-    for i in kwargs:
-        required_params[i] = kwargs[i]
-    query_string = semrush.resources.assemble_query_string(**required_params)
-    resp = requests.get(API_ENDPOINT+query_string)
-    click.echo(resp.text)
-
-
-@domain.command()
-@click.option("-db", "--database", default="us")
-@click.option("--display-limit", default=1)
-@click.option("--export-escape", default=1)
-@click.pass_context
 def adwords(ctx, **kwargs):
     """Lists keywords that bring users to a domain via Google's paid search results.
     \f
@@ -70,7 +47,7 @@ def adwords(ctx, **kwargs):
 @click.option("--display-limit", default=1)
 @click.option("--export-escape", default=1)
 @click.pass_context
-def adwords_competition(ctx, **kwargs):
+def adwords_adwords(ctx, **kwargs):
     """Lists a domain’s competition in paid search results.
     \f
     :Keyword Arguments:
@@ -80,6 +57,29 @@ def adwords_competition(ctx, **kwargs):
     """
     required_params = dict()
     required_params['type'] = 'domain_adwords_adwords'
+    required_params['domain'] = ctx.obj['domain']
+    for i in kwargs:
+        required_params[i] = kwargs[i]
+    query_string = semrush.resources.assemble_query_string(**required_params)
+    resp = requests.get(API_ENDPOINT+query_string)
+    click.echo(resp.text)
+
+
+@domain.command()
+@click.option("-db", "--database", default="us")
+@click.option("--display-limit", default=1)
+@click.option("--export-escape", default=1)
+@click.pass_context
+def adwords_historical(ctx, **kwargs):
+    """Shows keywords a domain has bid on in the last 12 months and its positions in paid search results.
+    \f
+    :Keyword Arguments:
+        * *database* (``str``) -- 
+        * *display_limit* (``int``) -- 
+        * *export_escape* (``int``) -- 
+    """
+    required_params = dict()
+    required_params['type'] = 'domain_adwords_historical'
     required_params['domain'] = ctx.obj['domain']
     for i in kwargs:
         required_params[i] = kwargs[i]
@@ -116,7 +116,7 @@ def adwords_unique(ctx, **kwargs):
 @click.option("--display-limit", default=1)
 @click.option("--export-escape", default=1)
 @click.pass_context
-def compare(ctx, **kwargs):
+def domains(ctx, **kwargs):
     """Compares up to five domains by common keywords, unique keywords, all keywords, or search terms that are unique to the first domain.
     \f
     :param domains: A URL-encoded string that contains domains in a specified format, separated by "|".
@@ -152,7 +152,32 @@ def shopping(ctx, **kwargs):
         * *export_escape* (``int``) -- 
     """
     required_params = dict()
-    required_params['type'] = 'domain_domains'
+    required_params['type'] = 'domain_shopping'
+    required_params['domains'] = ctx.obj['domain']
+    for i in kwargs:
+        required_params[i] = kwargs[i]
+    query_string = semrush.resources.assemble_query_string(**required_params)
+    resp = requests.get(API_ENDPOINT+query_string)
+    click.echo(resp.text)
+    
+
+@domain.command()
+@click.option("-db", "--database", default="us")
+@click.option("--display-limit", default=1)
+@click.option("--export-escape", default=1)
+@click.pass_context
+def shopping_unique(ctx, **kwargs):
+    """Shows product listing ad copies SEMrush noticed when the domain ranked in Google's paid search results for keywords from our databases.
+    \f
+    :param domains: A URL-encoded string that contains domains in a specified format, separated by "|".
+    :type domains: str
+    :Keyword Arguments:
+        * *database* (``str``) -- 
+        * *display_limit* (``int``) -- 
+        * *export_escape* (``int``) -- 
+    """
+    required_params = dict()
+    required_params['type'] = 'domain_shopping_unique'
     required_params['domains'] = ctx.obj['domain']
     for i in kwargs:
         required_params[i] = kwargs[i]
@@ -188,7 +213,7 @@ def organic(ctx, **kwargs):
 @click.option("--display-limit", default=1)
 @click.option("--export-escape", default=1)
 @click.pass_context
-def organic_competition(ctx, **kwargs):
+def organic_organic(ctx, **kwargs):
     """Lists a domain’s competition in organic search results.
     \f
     :Keyword Arguments:
