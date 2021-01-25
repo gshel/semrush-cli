@@ -37,16 +37,16 @@ jobs:
         run: |
           git config --global user.email "${{ github.event.sender.login }}@users.noreply.github.com"
           git config --global user.name "Github Actions"
-      - name: Increment VERSION
+      - name: Increment semrush/__init__.py
         if: ${{ steps.increment.outputs.TYPE }}
         run: |
-          bump2version --current-version `cat VERSION` ${{ steps.increment.outputs.TYPE }} VERSION
-          echo "${{ steps.increment.outputs.TYPE }} bump to: `cat VERSION`"
+          bump2version --current-version `python3.8 semrush/__init__.py` ${{ steps.increment.outputs.TYPE }} semrush/__init__.py
+          echo "${{ steps.increment.outputs.TYPE }} bump to: `python3.8 semrush/__init__.py`"
       - name: Push Changes to Branch
         if: ${{ steps.increment.outputs.TYPE }}
         run: |
           git checkout ${GITHUB_REF##*/}
-          git add VERSION
+          git add semrush/__init__.py
           git push
       - name: Install pypa/build
         if: ${{ steps.increment.outputs.TYPE }}
