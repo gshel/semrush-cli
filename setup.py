@@ -5,10 +5,13 @@ import os
 
 here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
+version = {}
+with open(os.path.join(".", "semrush", "__init__.py")) as fp:
+    exec(fp.read(), version)
 
 setup(
     name="semrush-cli",
-    version=open(os.path.join(".", "VERSION")).read().strip(),
+    version=version['__version__'],
     description="A command-line tool for interacting with the SEMRush API v3.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -21,7 +24,6 @@ setup(
         "Programming Language :: Python :: 3.8",
     ],
     keywords="semrush, command-line, command-line interface",
-    package_data={'semrush':['../VERSION']},
     package_dir={"": "."},
     packages=find_packages(where="."),
     include_package_data=True,
