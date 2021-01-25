@@ -1,5 +1,4 @@
-import os
-import click
+__version__ = "1.0.0"
 
-
-__version__ = open(os.path.join("..", "VERSION")).read().strip()
+if __name__ == "__main__":
+    print(__version__)
