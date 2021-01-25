@@ -40,7 +40,7 @@ jobs:
       - name: Increment semrush/__init__.py
         if: ${{ steps.increment.outputs.TYPE }}
         run: |
-          echo "`python3.8 semrush/__init__.py`"
+          echo "`python semrush/__init__.py`"
           bump2version --current-version `python semrush/__init__.py` ${{ steps.increment.outputs.TYPE }} semrush/__init__.py
           echo "${{ steps.increment.outputs.TYPE }} bump to: `python semrush/__init__.py`"
       - name: Push Changes to Branch
